@@ -1,4 +1,4 @@
-# todo-app
+# A Todo Application
 
 A basic todo list application using Flask
 
@@ -12,17 +12,17 @@ A basic todo list application using Flask
 |     | due date    |
 |     | status      |
 
-## Routes
+## Routes to be built
 
 add item - CREATE
+
 home/view - READ
+
 update item - UPDATE
+
 delete item - DELETE
+
 search/filter - READ
 (statistics)
+
 sort
-
-Best practice file structure please
-
-Get set up on git, and go crazy.
-
