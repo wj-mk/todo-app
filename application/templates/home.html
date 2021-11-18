@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block body %}
+<p>Here are your todo items</p>
+{% for item in items %}
+<p>{{item}}</p>
+{% endfor %}
+{% endblock body %}
