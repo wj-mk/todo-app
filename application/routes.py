@@ -1,6 +1,9 @@
+import datetime
 from application import app, db
 from application.models import Items
 from flask import redirect, url_for
+from datetime import datetime
+
 
 @app.route('/')
 def home():
@@ -23,9 +26,17 @@ def add_item(name, desc):
     return "Added item"
     
 @app.route('/status/<int:id>/<status>')
-def update_status(status):
+def update_status(id, status):
     item = Items.query.get(id)
     item.status = status
     db.session.add(item)
     db.session.commit()
     return "Item status updated"
+
+@app.route('/due/<int:id>/<date>')
+def update_date(id, date):
+    item = Items.query.get(id)
+    item.date = datetime.strptime(date, '%Y-%m-%d')
+    db.session.add(item)
+    db.session.commit()
+    return "Item date updated"
