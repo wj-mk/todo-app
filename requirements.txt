@@ -2,3 +2,5 @@ flask
 flask_sqlalchemy
 pymysql
 datetime
+flask_wtf
+wtforms
