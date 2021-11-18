@@ -11,6 +11,7 @@ def home():
         # don't understand how this works yet, but can move on
         out = ''
         for item in items:
+            print(item)
             out += ''.join(str(item.id) + '||' + item.name + '||' + item.desc + '||' + item.status + '||' + str(item.date)) + '<br>'
         return  out
 
@@ -20,9 +21,9 @@ def add_item(name, desc):
     db.session.add(newitem)
     db.session.commit()
     return "Added item"
-
+    
 @app.route('/status/<int:id>/<status>')
-def update_status(id, status):
+def update_status(status):
     item = Items.query.get(id)
     item.status = status
     db.session.add(item)
