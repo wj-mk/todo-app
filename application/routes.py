@@ -22,7 +22,7 @@ def add_item(name, desc):
     return "Added item"
 
 @app.route('/status/<int:id>/<status>')
-def update_status(status):
+def update_status(id, status):
     item = Items.query.get(id)
     item.status = status
     db.session.add(item)
