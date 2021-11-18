@@ -1,7 +1,6 @@
-import datetime
 from application import app, db
 from application.models import Items
-from flask import redirect, url_for
+from flask import redirect, url_for, render_template
 from datetime import datetime
 
 @app.route('/')
@@ -10,11 +9,11 @@ def home():
     if len(items) == 0:
         return "Welcome to a basic todo app. Why not add some todos?"
     else:
-        out = ''
+        out = []
         for item in items:
-            print(item)
-            out += ''.join(str(item.id) + '||' + item.name + '||' + item.desc + '||' + item.status + '||' + str(item.date)) + '<br>'
-        return  out
+            out.append( ''.join(str(item.id) + '||' + item.name + '||' + item.desc + '||' + item.status + '||' + str(item.date)))
+        #return  out
+        return render_template("home.html", items=out)
 
 # Route to create a todo item
 @app.route('/add/<name>/<desc>')
