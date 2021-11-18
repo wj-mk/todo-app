@@ -4,7 +4,6 @@ from application.models import Items
 from flask import redirect, url_for
 from datetime import datetime
 
-
 @app.route('/')
 def home():
     items = Items.query.all()
@@ -57,3 +56,10 @@ def update_desc(id, desc):
     db.session.add(item)
     db.session.commit()
     return "Item description updated"
+
+# Route to delete a todo item
+@app.route('/delete/<int:id>')
+def delete(id):
+    db.session.delete(Items.query.get(id))
+    db.session.commit()
+    return "Item deleted"
