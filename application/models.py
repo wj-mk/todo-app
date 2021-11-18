@@ -1,8 +1,11 @@
 from application import db
+from datetime import date
 
 class Items(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(30))
-    description = db.Column(db.String(100), nullable = False)
-    date = db.Column(db.DateTime)
-    status = db.Column(db.Boolean, default = False)
+    desc = db.Column(db.String(100))
+    date = db.Column(db.DateTime, default=date.today())
+    status = db.Column(db.String(5), default = 'todo')
+
+db.create_all()

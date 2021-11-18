@@ -12,7 +12,7 @@ def home():
         out = ''
         for item in items:
             print(item)
-            out += ''.join(str(item.id) + '||' + item.name + '||' + item.desc + '||' + item.status) + '<br>'
+            out += ''.join(str(item.id) + '||' + item.name + '||' + item.desc + '||' + item.status + '||' + str(item.date)) + '<br>'
         return  out
 
 @app.route('/add/<name>/<desc>')
