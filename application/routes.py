@@ -26,8 +26,15 @@ def home_form():
     if request.method == 'POST':
         item_name = form.item_name.data
         item_desc = form.item_desc.data
-        newitem = Items(name=item_name, desc=item_desc)
-        db.session.add(newitem)
+        item_stat = form.item_stat.data
+        item_date = form.item_date.data
+        item = Items(
+            name = item_name, 
+            desc =item_desc, 
+            status = item_stat, 
+            date = item_date
+        )
+        db.session.add(item)
         db.session.commit()
     return redirect(url_for('home'))
 
