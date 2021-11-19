@@ -1,20 +1,35 @@
-import datetime
+from werkzeug.datastructures import RequestCacheControl
 from application import app, db
+from application.forms import ItemEntry
 from application.models import Items
-from flask import redirect, url_for
+from flask import request, render_template, redirect, url_for
 from datetime import datetime
 
 @app.route('/')
 def home():
+    form = ItemEntry()
     items = Items.query.all()
+    
     if len(items) == 0:
         return "Welcome to a basic todo app. Why not add some todos?"
     else:
-        out = ''
+        out = []
         for item in items:
-            print(item)
-            out += ''.join(str(item.id) + '||' + item.name + '||' + item.desc + '||' + item.status + '||' + str(item.date)) + '<br>'
-        return  out
+            out.append( ''.join(str(item.id) + '||' + item.name + '||' + item.desc + '||' + item.status + '||' + str(item.date)))
+        #return  out
+        return render_template("home.html", items=out, form=form)
+
+@app.route('/', methods=['GET', 'POST'])
+def home_form():
+    message = ""
+    form = ItemEntry()
+    if request.method == 'POST':
+        item_name = form.item_name.data
+        item_desc = form.item_desc.data
+        newitem = Items(name=item_name, desc=item_desc)
+        db.session.add(newitem)
+        db.session.commit()
+    return redirect(url_for('home'))
 
 # Route to create a todo item
 @app.route('/add/<name>/<desc>')

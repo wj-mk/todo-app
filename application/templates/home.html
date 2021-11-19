@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <h2>Enter a todo item</h2>
+    <div class='form'>
+        <form method='POST' action=''>
+            {{ form.hidden_tag() }}
+            {{ form.item_name.label }} {{ form.item_name }}
+            <br>
+            {{ form.item_desc.label }} {{ form.item_desc }}
+            <br>
+            {{ form.item_stat.label }} {{ form.item_stat }}
+            <br>
+            {{ form.item_date.label }} {{ form.item_date }}
+            <br>
+            {{ form.submit }}
+        </form>
+    </div>
+    <hr>
+    <h2>Here are your todo items</h2>
+    {% for item in items %}
+        <p>{{item}}</p>
+    {% endfor %}
+{% endblock body %}
