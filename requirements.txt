@@ -4,3 +4,6 @@ pymysql
 datetime
 flask_wtf
 wtforms
+flask_testing
+pytest
+pytest-cov
